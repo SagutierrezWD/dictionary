@@ -15,7 +15,7 @@
     font-family: sans-serif;
 }
 
-html:has(input[type="checkbox"][themeSwitcher=true]:checked) {
+html:has(input[type="checkbox"][themeswitcher=true]:checked) {
     --bodyColor: black;
     --titleColor:white;
     --textColor: white;

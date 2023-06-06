@@ -7,7 +7,7 @@ const Header = () => {
             
             <div className="actions">
                 <label className="switch-btn" htmlFor="switch">
-                    <input type="checkbox" themeSwitcher="true" name='switch' id="switch"></input>
+                    <input type="checkbox" themeswitcher="true" name='switch' id="switch"></input>
                     <div className="switch-inner"></div>
                 </label>
 

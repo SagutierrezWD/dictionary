@@ -30,15 +30,15 @@ const Meaning = ({type}) => {
     }else if(type==="verb"){
         return (
             <div className="meaning">
-                <div class="meaning-head">
+                <div className="meaning-head">
                     <h3><span>verb</span></h3>
-                    <h4 class="subtitle">Meaning</h4>
+                    <h4 className="subtitle">Meaning</h4>
                 </div>
 
                 <ul>
                     <li>
                         <p>To type on a computer keyboard </p>
-                        <p class="example">"Keyboarding is the part of this job I hate the most."</p>
+                        <p className="example">"Keyboarding is the part of this job I hate the most."</p>
                     </li>
                 </ul>
             </div>
