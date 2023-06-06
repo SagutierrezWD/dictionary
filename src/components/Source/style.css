@@ -1,0 +1,44 @@
+.source {
+    width: 90%;
+    margin: 0 auto 100px auto;
+    padding: 15px 5px 5px 5px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    border-top: 1px solid lightgrey;
+}
+
+.source span, .source a{
+    border-bottom: 1px solid lightgrey;
+    padding-bottom: 5px;
+}
+
+.source a {
+    text-decoration: none;
+    color: var(--textColor);
+}
+
+.source i {
+    margin-top: 10px;
+    color: grey;
+}
+
+.subtitle {
+    color: grey;
+    font-size: 22px;
+}
+
+@media screen and (min-width:768px) {
+    .source, .source .subtitle {
+        font-size: 16px;
+        text-decoration: none;
+    }
+
+    .source .subtitle{
+        margin-right: 5px;
+    }
+
+    .source i {
+        margin-top: 0;
+        margin-left: 10px;
+    }
+}

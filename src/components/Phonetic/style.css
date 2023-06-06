@@ -1,0 +1,56 @@
+.results .about-word {
+    display: flex;
+    justify-content: space-between;
+}
+
+.about-word {
+    margin-bottom: -13px;
+}
+
+.about-word .word h2 {
+    color: var(--titleColor);
+    font-size: 30px;
+    margin-bottom: 16px;
+}
+
+.about-word .word span {
+    color: var(--mainColor);
+    margin-top: 20px;
+    font-size: 22px;
+}
+
+.spell {
+    display: flex;
+    align-items: center;
+}
+
+.spell i {
+    aspect-ratio: 1/1;
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #e2bbff;
+    border-radius: 50%;
+    font-size: 32px;
+    color: var(--mainColor);
+    cursor: pointer;
+}
+
+@media screen and (min-width:768px) {
+    .about-word .word h2 {
+        font-size: 54px;
+    }
+    
+    .about-word .word span {
+        font-size: 27px;
+    }
+}
+
+@media screen and (min-width:1024px) {
+    .spell i {
+        width: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 64px;
+    }
+}
