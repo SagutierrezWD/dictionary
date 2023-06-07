@@ -3,16 +3,21 @@ import Phonetic from '../../components/Phonetic'
 import Source from '../Source'
 import './style.css'
 
-const Results = () => {
+const Results = ({data}) => {
+    const {word, phonetic, phonetics, meanings, sourceUrls} = data || {};
     return ( <>
         <section className="results">
-            <Phonetic></Phonetic>
-
-            <Meaning type={"noun"}/>
-            <Meaning type={"verb"}/>
+            {
+                meanings && <Phonetic data={{word, phonetic, phonetics}}/>
+            }
+            {
+                meanings && meanings.map((data, indexMeanings) => <Meaning data={data} key={indexMeanings}/>)
+            }
         </section>
 
-        <Source></Source>
+        {
+            sourceUrls && <Source url={sourceUrls[0]}></Source>
+        }
         </>
     )
 }

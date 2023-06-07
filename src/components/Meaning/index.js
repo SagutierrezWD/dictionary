@@ -1,49 +1,49 @@
 import './style.css'
 
-const Meaning = ({type}) => {
-    if(type==="noun"){
-        return (
-            <div className="meaning">
-                <div className="meaning-head">
-                    <h3><span>noun</span></h3>
-                    <h4 className="subtitle">Meaning</h4>
-                </div>
+const Meaning = ({data}) => {
+    const {definitions, partOfSpeech, synonyms, antonyms} = data || {};
+ 
+    return (
+        <div className="meaning">
+            <div className="meaning-head">
+                <h3><span>{partOfSpeech}</span></h3>
+                <h4 className="subtitle">Meaning</h4>
+            </div>
 
-                <ul>
-                    <li><p>A set of keys used to operate a typewriter, computer etc.</p></li>
-                    <li><p>A component of many instruments including the piano, organ, and harpsichord consisting of usually black and white keys that cause different tones to be produced when struck.</p></li>
-                    <li><p>A device with keys of a musical keyboard, used to control electronic sound-producing devices which may be built into or separate from the keyboard device.</p></li>
-                </ul>
+            <ul>
+                {
+                    definitions.map(({definition, example}, indexDef) => {
+                        return <li key={indexDef}>
+                            <p>{definition}</p>
+                            {
+                                example && <p key={"ex"+indexDef} className="example">"{example}"</p>
+                            }
+                        </li>
+                    })
+                }
+            </ul>
 
-                <div className="more-meaning">
+            {
+                synonyms[0] &&
+                <div className="more-meaning" key={"syn"}>
                     <span className="subtitle">Synonyms</span> 
-                    <p className="featured-color">electronic keyboard</p>
-                    <p className="featured-color">electronic keyboard</p>
-                    <p className="featured-color">electronic keyboard</p>
-                    <p className="featured-color">electronic keyboard</p>
-                    <p className="featured-color">electronic keyboard</p>
-                    <p className="featured-color">electronic keyboard</p>
-                    <p className="featured-color">electronic keyboard</p>
+                    {
+                        synonyms.map((synonym, indexSyn) => <p key={indexSyn} className="featured-color">{synonym}</p>)
+                    }
                 </div>
-            </div>
-        )
-    }else if(type==="verb"){
-        return (
-            <div className="meaning">
-                <div className="meaning-head">
-                    <h3><span>verb</span></h3>
-                    <h4 className="subtitle">Meaning</h4>
-                </div>
+            }
 
-                <ul>
-                    <li>
-                        <p>To type on a computer keyboard </p>
-                        <p className="example">"Keyboarding is the part of this job I hate the most."</p>
-                    </li>
-                </ul>
-            </div>
-        )
-    }
+            {
+                antonyms[0] &&
+                <div className="more-meaning" key={"ant"}>
+                    <span className="subtitle">Antonyms</span> 
+                    {
+                        antonyms.map((antonym, indexAnt) => <p key={indexAnt} className="featured-color">{antonym}</p>)
+                    }
+                </div>
+            }
+        </div>
+    )
 }
 
 export default Meaning

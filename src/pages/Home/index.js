@@ -7,21 +7,34 @@ import './style.css'
 const Home = () => {
     const [data,setData] = useState(null)
     const [inputSearch,setInputSearch] = useState("")
+    const [found,setFound] = useState(null)
 
     useEffect(() => {
         if(inputSearch !== ""){
-            resetInputValue()
-
             fetch("https://api.dictionaryapi.dev/api/v2/entries/en/"+inputSearch)
             .then((res) => res.json())
-            .then((info) => setData(info))
+            .then((info) => {
+                //Data has not been obtained
+                if(info?.title)
+                    isDataFounded(false)
+                
+                //Data has been obtained
+                if(info[0])
+                    isDataFounded(true)
+                
+                settingData(info)
+            })
             .catch((e) => console.log(e))
         }else{
-            resetInputValue()
+            resetDataValues()
         }
     }, [inputSearch])
 
-    const resetInputValue = () => {
+    const settingData = (data) => {
+        setData(data)
+    }
+
+    const resetDataValues = () => {
         setData(null)
     }
 
@@ -29,11 +42,27 @@ const Home = () => {
         setInputSearch(value)
     }
 
+    const isDataFounded = (state) => {
+        setFound(state)
+    }
+
     return (
         <main>
             <Header></Header>
             <SearchBox value={inputSearch} updateInputValue={(value) => updateInputValue(value)}></SearchBox>
-            <Results></Results>
+            {
+                data === null && inputSearch === "" && <div>Welcome</div>
+            }
+            {
+                found === false && <div>
+                    {
+                        <div>{data?.title}</div>
+                    }
+                </div>
+            }
+            {
+                data && inputSearch && found && <Results data={data[0]}></Results>
+            }
         </main>
     )
 }
