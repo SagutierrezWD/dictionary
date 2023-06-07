@@ -2,7 +2,9 @@ import { useState, useEffect } from 'react'
 import Header from '../../components/Header'
 import Results from '../../components/Results'
 import SearchBox from '../../components/SearchBox'
+import Welcome from '../../components/Welcome'
 import './style.css'
+import NotFound from '../../components/NotFound'
 
 const Home = () => {
     const [data,setData] = useState(null)
@@ -51,12 +53,12 @@ const Home = () => {
             <Header></Header>
             <SearchBox value={inputSearch} updateInputValue={(value) => updateInputValue(value)}></SearchBox>
             {
-                data === null && inputSearch === "" && <div>Welcome</div>
+                data === null && inputSearch === "" && <Welcome />
             }
             {
                 found === false && <div>
                     {
-                        <div>{data?.title}</div>
+                        <NotFound title={data?.title} />
                     }
                 </div>
             }

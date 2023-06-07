@@ -1,0 +1,13 @@
+.welcome {
+    width: 90%;
+    margin: 0 auto;
+    font-size: 20px;
+    color: var(--textColor);
+    transition: color 0.5s ease;
+}
+
+.featured {
+    font-weight: 700;
+    color: var(--mainColor);
+    transition: color 0.5s ease;
+}
