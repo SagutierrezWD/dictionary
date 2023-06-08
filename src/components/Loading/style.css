@@ -1,0 +1,7 @@
+.loading {
+    width: 90%;
+    margin: 0 auto;
+    color: var(--textColor);
+    transition: color 0.5s ease;
+    font-size: 20px;
+}

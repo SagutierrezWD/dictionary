@@ -3,16 +3,20 @@ import Header from '../../components/Header'
 import Results from '../../components/Results'
 import SearchBox from '../../components/SearchBox'
 import Welcome from '../../components/Welcome'
-import './style.css'
 import NotFound from '../../components/NotFound'
+import Loading from '../../components/Loading'
+import './style.css'
 
 const Home = () => {
     const [data,setData] = useState(null)
     const [inputSearch,setInputSearch] = useState("")
     const [found,setFound] = useState(null)
+    const [isLoading,setIsLoading] = useState(false)
 
     useEffect(() => {
         if(inputSearch !== ""){
+            loadingStatus(true)
+
             fetch("https://api.dictionaryapi.dev/api/v2/entries/en/"+inputSearch)
             .then((res) => res.json())
             .then((info) => {
@@ -26,6 +30,7 @@ const Home = () => {
                 
                 settingData(info)
             })
+            .finally(() => loadingStatus(false))
             .catch((e) => console.log(e))
         }else{
             resetDataValues()
@@ -48,22 +53,29 @@ const Home = () => {
         setFound(state)
     }
 
+    const loadingStatus = (value) => {
+        setIsLoading(value)
+    }
+
     return (
         <main>
             <Header></Header>
             <SearchBox value={inputSearch} updateInputValue={(value) => updateInputValue(value)}></SearchBox>
             {
-                data === null && inputSearch === "" && <Welcome />
+                inputSearch === ""  && isLoading === false && <Welcome />
             }
             {
-                found === false && <div>
+                isLoading && <Loading />
+            }
+            {
+                found === false && isLoading === false && <div>
                     {
                         <NotFound title={data?.title} />
                     }
                 </div>
             }
             {
-                data && inputSearch && found && <Results data={data[0]}></Results>
+                data && inputSearch && found && isLoading === false && <Results data={data[0]}></Results>
             }
         </main>
     )
