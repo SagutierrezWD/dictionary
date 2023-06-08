@@ -1,3 +1,4 @@
+import { Howl } from 'howler'
 import './style.css'
 
 const Phonetic = ({data}) => {
@@ -16,6 +17,14 @@ const Phonetic = ({data}) => {
     
     const {audio} = getAudioUrl(phonetics) || {};
 
+    const playAudio = (src) => {
+        const sound = new Howl({
+            src,
+            html: true
+        })
+        sound.play()
+    }
+
     return (
         <div className="about-word">
             <div className="word">
@@ -26,7 +35,7 @@ const Phonetic = ({data}) => {
             {
                 phonetics && audio &&
                 <div className="spell">
-                    <i className='bx bx-play'></i>
+                    <i className='bx bx-play' onClick={() => playAudio(audio)}></i>
                 </div>
             }
         </div>
